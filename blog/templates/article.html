@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load components %}
+
+{% block title %}{{ object.title }}{% endblock title %}
+
+
+{% block content %}
+<div class="p-4">
+  <input type="hidden" id="post-id" value="{{ object.id }}" />
+  <section>
+    <article class="blog-post p-5">
+      <h1>{{ object.title }}</h1>
+      <hr />
+      <p class="blog-post-meta text-secondary">{{ post.created|date:"d.m.Y" }} by {{ post.author }}</p>
+      <p>{{ object.body|safe }}</p>
+      {% like_btn %}
+    </article>
+  </section>
+  {% include 'components/comments.html' %}
+  <!-- render last_articles here -->
+  <section class="p-5">
+    <h2>Last Articles</h2>
+
+    {% for article in last_articles %}
+    <div class="post-item col-12 col-md-6 w-100">
+      <div class="card h-35">
+        <div class="card-body">
+          <h2 class="card-title">{{ article.title }}</h2>
+          <p class="text-secondary">{{ article.created|date:"d.m.Y" }} by {{ article.author }}</p>
+          <p class="card-text">{{article.body|safe|truncatewords_html:15 }}</p>
+          <a href="{% url 'post_detail' article.slug  %}" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}    
+  </section>
+  </div>
+
+{% endblock content%}
