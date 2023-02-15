@@ -8,7 +8,7 @@
             </p>
         </div>
         <div class="content_block-image">
-            <svg class="chart" id="Column Chart 1" width="100%" height="100%" viewBox="0 0 1000 500"
+            <svg class="chart" id="Column-Chart-1" width="100%" height="100%" viewBox="0 0 1000 500"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="  M0,500  h66.66666666666667  v-374.2377068057993  q0,-20 -20,-20  h-26.66666666666667  q-20,0 -20,20  Z"
@@ -48,10 +48,16 @@
                     fill="#8184c2" /> </svg>
         </div>
     </div>
-    <div class="content_block d-flex flex-column flex-lg-row justify-content-between align-items-center">
+    <div class=" content_block d-flex flex-column flex-lg-row justify-content-between align-items-center">
+        <div class="content_block-text">
+            <h3>Lorem ipsum dolor</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quos sunt iure assumenda reprehenderit et?
+                Eaque ex accusantium nisi nulla aut animi harum ad deleniti, possimus numquam laborum, corporis
+                consectetur.</p>
+        </div>
         <div class="content_block-image">
             <!-- column_type_2.svg -->
-            <svg class="chart" id="Column Chart 2" width="100%" height="100%" viewBox="0 0 1000 500"
+            <svg class="chart" id="Column-Chart-2" width="100%" height="100%" viewBox="0 0 1000 500"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="  M0,500  h66.66666666666667  v-301.37636488914677  q0,-20 -20,-20  h-26.66666666666667  q-20,0 -20,20  Z"
@@ -90,12 +96,7 @@
                     d="  M916.6666666666666,500  h66.66666666666667  v-104.25353250893  q0,-20 -20,-20  h-26.66666666666667  q-20,0 -20,20  Z"
                     fill="#8184c2" /> </svg>
         </div>
-        <div class="content_block-text">
-            <h3>Lorem ipsum dolor</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quos sunt iure assumenda reprehenderit et?
-                Eaque ex accusantium nisi nulla aut animi harum ad deleniti, possimus numquam laborum, corporis
-                consectetur.</p>
-        </div>
+
 
     </div>
     <div class="content_block d-flex flex-column flex-lg-row justify-content-between align-items-center">
@@ -107,7 +108,7 @@
         </div>
         <div class="content_block-image">
             <!-- column_type_3.svg -->
-            <svg id="Column Chart 3" width="100%" height="100%" viewBox="0 0 1000 500"
+            <svg id="Column-Chart-3" width="100%" height="100%" viewBox="0 0 1000 500"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="  M0,500  h66.66666666666667  v-95.44121017804082  q0,-20 -20,-20  h-26.66666666666667  q-20,0 -20,20  Z"
@@ -146,11 +147,20 @@
                     d="  M916.6666666666666,500  h66.66666666666667  v-329.6442990881289  q0,-20 -20,-20  h-26.66666666666667  q-20,0 -20,20  Z"
                     fill="#8184c2" /> </svg>
         </div>
+
+
     </div>
-    <div class="content_block d-flex flex-column flex-lg-row justify-content-between align-items-center">
+    <div class="test content_block d-flex flex-column flex-lg-row justify-content-between align-items-center">
+
+        <div class="content_block-text">
+            <h3>Lorem ipsum dolor</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quos sunt iure assumenda reprehenderit et?
+                Eaque ex accusantium nisi nulla aut animi harum ad deleniti, possimus numquam laborum, corporis
+                consectetur.</p>
+        </div>
         <div class="content_block-image">
             <!-- column_type_4.svg -->
-            <svg id="Column Chart 4" width="100%" height="100%" viewBox="0 0 1000 500"
+            <svg id="Column-Chart-4" width="100%" height="100%" viewBox="0 0 1000 500"
                 xmlns="http://www.w3.org/2000/svg">
                 <path class="blip1"
                     d="  M0,500  h66.66666666666667  v-143.24840866021646  q0,-20 -20,-20  h-26.66666666666667  q-20,0 -20,20  Z"
@@ -189,25 +199,53 @@
                     d="  M916.6666666666666,500  h66.66666666666667  v-407.44717671913304  q0,-20 -20,-20  h-26.66666666666667  q-20,0 -20,20  Z"
                     fill="#8184c2" /> </svg>
         </div>
-        <div class="content_block-text">
-            <h3>Lorem ipsum dolor</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quos sunt iure assumenda reprehenderit et?
-                Eaque ex accusantium nisi nulla aut animi harum ad deleniti, possimus numquam laborum, corporis
-                consectetur.</p>
-        </div>
 
     </div>
 
     <script>
-        let paths = [...document.getElementsByTagName('path')]
-        paths = paths.slice(2, paths.length)
-        paths.forEach((child) => {
-            gsap.from(child, {
-                scaleY: 0,
-                transformOrigin: '50% 100%',
-                duration: 1.5
+        let images = [...document.getElementsByClassName('content_block-image')]
+
+        for (let i = 1; i <= images.length; i++) {
+
+            ScrollTrigger.create({
+                once: true,
+                start: "top 70% ",
+                trigger: `#Column-Chart-${i}`,
+                onEnter: function action() {
+                    let graph = [...document.getElementById(`Column-Chart-${i}`).getElementsByTagName(
+                        'path')]
+                    console.log(graph)
+                    console.log(i)
+                    TweenLite.set(`#Column-Chart-${i}`, {
+                        visibility: "visible"
+                    });
+                    graph.forEach((child) => {
+                        gsap.from(child, {
+                            scaleY: 0,
+                            transformOrigin: '50% 100%',
+                            duration: 2
+                        })
+                    })
+                }
             })
-        })
+        }
     </script>
+
+    <style>
+        #Column-Chart-1,
+        #Column-Chart-2,
+        #Column-Chart-3,
+        #Column-Chart-4 {
+            visibility: hidden
+        }
+
+        @media (min-width: 992px) {
+
+            .content_block:nth-child(even) .content_block-text {
+                order: 1;
+            }
+
+        }
+    </style>
 
 </section>
